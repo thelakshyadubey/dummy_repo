@@ -3,19 +3,17 @@ Sample vulnerable application for testing the Self-Healing DevSecOps Agent.
 This file intentionally contains 3 security vulnerabilities.
 """
 import os
-import ast
-import subprocess
 
 # Vulnerability 1: Hardcoded API key
-api_key = os.getenv("API_KEY")
+api_key = "sk-1234567890abcdef"
 
 def calculate(expression):
     # Vulnerability 2: Using eval() with user input
-    result = ast.literal_eval(expression)
+    result = eval(expression)
     return result
 
 def run_command(user_input):
-    subprocess.run(["echo", user_input], capture_output=True, text=True)
+    # Vulnerability 3: Command injection via os.system with concatenation
     os.system("echo " + user_input)
 
 def safe_function():
