@@ -5,7 +5,7 @@ This file intentionally contains 3 security vulnerabilities.
 import os
 
 # Vulnerability 1: Hardcoded API key
-api_key = "sk-1234567890abcdef"
+api_key = os.getenv("API_KEY")
 
 def calculate(expression):
     # Vulnerability 2: Using eval() with user input
