@@ -9,7 +9,7 @@ api_key = os.getenv("API_KEY")
 
 def calculate(expression):
     # Vulnerability 2: Using eval() with user input
-    result = eval(expression)
+    result = eval(expression, {"__builtins__": {}})
     return result
 
 def run_command(user_input):
